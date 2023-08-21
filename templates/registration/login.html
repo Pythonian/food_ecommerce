@@ -35,7 +35,7 @@
                                 </div>
         						{% endfor %}
                             </div>
-                            <button class="btn w-100 btn-outline-primary mb-2" type="submit" id="login" disabled>Login</button>   
+                            <button class="btn w-100 btn-outline-primary mb-2" type="submit">Login</button>   
                             <small class="fw-bold float-end"><a href="{% url 'password_reset' %}" class="text-decoration-none">Forgot Password?</a></small>
                                <div class="clearfix"></div>
                             <input type="hidden" name="next" value="{{ next }}">
@@ -59,46 +59,4 @@
     </div>
 </section>
 
-{% endblock %}
-
-{% block scripts %}
-<script>
-    let inputs = document.querySelectorAll('input');
-    let loginButton = document.getElementById('login');
-
-    let inputValidator = {
-        "username": false,
-        "password": false
-    }
-
-    inputs.forEach((input) => {
-        input.addEventListener('input', () => {
-            let name = event.target.getAttribute('name');
-            if (event.target.value.length > 0) {
-                inputValidator[name] = true;
-            } else {
-                inputValidator[name] = false;
-            };
-
-            let allTrue = Object.keys(inputValidator).every((item) => {
-                return inputValidator[item] === true
-            });
-
-            if (allTrue) {
-                loginButton.disabled = false;
-            } else {
-                loginButton.disabled = true;
-            }
-        })
-    })
-
-    function togglePassword() {
-        var p = document.getElementById("id_password");
-        if (p.type === 'password') {
-            p.type = "text";
-        } else {
-            p.type = "password";
-        }
-    }
-</script>
 {% endblock %}

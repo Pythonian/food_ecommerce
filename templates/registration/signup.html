@@ -46,7 +46,6 @@
                             </div>
                             
                             <div class="mb-3"> 
-                                <!-- <label for="id_password2" class="form-label">Confirm password:</label> <br> -->
                                 <input type="password" name="password2" autocomplete="new-password" required id="id_password2" class="form-control {% if form.password2.errors %}is-invalid{% endif %}" placeholder="Confirm Password">
         						{% for error in form.password2.errors %}
                                 <div class="invalid-feedback">
@@ -57,7 +56,7 @@
 
                             <div class="row mt-3 mb-4">
                                 <div class="col-auto"> 
-                                    <button class="btn btn-success" type="submit" id="signup" disabled>Register now</button> 
+                                    <button class="btn btn-success" type="submit">Register now</button> 
                                 </div>
                             </div>
                         </form>
@@ -70,48 +69,4 @@
     </div>
 </section>
 
-{% endblock %}
-
-{% block scripts %}
-<script>
-    let inputs = document.querySelectorAll('input');
-    let signupButton = document.getElementById('signup');
-
-    let inputValidator = {
-        "username": false,
-        "email": false,
-        "password1": false,
-        "password2": false,
-    }
-
-    inputs.forEach((input) => {
-        input.addEventListener('input', () => {
-            let name = event.target.getAttribute('name');
-            if (event.target.value.length > 0) {
-                inputValidator[name] = true;
-            } else {
-                inputValidator[name] = false;
-            };
-
-            let allTrue = Object.keys(inputValidator).every((item) => {
-                return inputValidator[item] === true
-            });
-
-            if (allTrue) {
-                signupButton.disabled = false;
-            } else {
-                signupButton.disabled = true;
-            }
-        })
-    })
-
-    function togglePassword() {
-        var p1 = document.getElementById("id_password1");
-        if (p1.type === 'password') {
-            p1.type = "text";
-        } else {
-            p1.type = "password";
-        }
-    }
-</script>
 {% endblock %}
