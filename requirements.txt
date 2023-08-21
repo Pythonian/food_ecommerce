@@ -1,0 +1,8 @@
+Django==4.2.4
+django-cleanup==8.0.0
+django-widget-tweaks==1.4.12
+-e git+https://github.com/gbozee/pypaystack.git@d5a463262440e39c9505e5dbd4e61f724337f98d#egg=pypaystack
+Pillow==10.0.0
+python-decouple==3.8
+requests==2.31.0
+requests-async

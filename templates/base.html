@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Type some info">
+    <meta name="author" content="Type name">
+
+    <title>{% block title %}{% endblock %} | Lunch Express</title>
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome/all.min.css' %}">
+
+    <!-- CSS only -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link href="{% static 'css/ui.css' %}" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="d-flex flex-column h-100 vh-100">
+
+    {% include 'partials/_navbar.html' %}
+    {% block content %}{% endblock %}
+    {% include 'partials/_footer.html' %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        window.onload = (event)=> {
+            let myAlert = document.querySelector('.toast');
+            let bsAlert = new bootstrap.Toast(myAlert);
+            bsAlert.show();
+        }
+    </script>
+    {% block scripts %}{% endblock %}
+    
+</body>
+</html>

@@ -1,0 +1,15 @@
+    <article class="card 1card-product-grid"> 
+        <a href="{{ product.get_absolute_url }}"> 
+            <img src="{{ product.image.url }}" height="200" class="card-img-top" alt="{{ product.name }}"> 
+        </a>
+        <div class="card-body pt-0">
+            <div class="pt-3 pe-5">
+                <h6 class="card-title mb-0"> 
+                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a> 
+                </h6>
+                <p class="mb-1 text-muted">{{ product.description|truncatechars:100 }}</p> 
+                <span class="badge bg-warning"> &#8358;{{ product.price|floatformat:2 }} </span> 
+                <span class="text-success small ms-2"> <i class="fa fa-truck"></i> {{ product.delivery_time }}</span> 
+            </div>
+        </div>
+    </article>

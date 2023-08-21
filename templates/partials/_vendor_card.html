@@ -1,0 +1,26 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="itemside mb-4">
+            <div class="aside"> 
+                <img src="{{ vendor.image.url }}" width="60" height="60" class="img-sm img-thumbnail"> 
+            </div>
+            <div class="info"> 
+                <span class="h6 title">{{ vendor.company_name }}</span>
+                <small class="text-muted">Selling {{ vendor.user.products.count }} product{{ vendor.user.products.count|pluralize }}</small>
+                <p><i class="fa fa-map-marker"></i> {{ vendor.address }}, {{ vendor.state }}</p>
+            </div>
+        </div>
+        <p>{{ vendor.about|truncatechars:280 }}</p>
+        <a href="{% url 'accounts:vendor_profile' vendor.user.username %}" class="btn w-100 btn-outline-primary">Visit store</a>
+    </div>
+</div>
+
+<!-- <div 1class="col-lg-4">
+    <div class="card">
+        <article class="p-4 p-xl-5 text-center"> <img src="{{ vendor.image.url }}" class="img-avatar img-md">
+            <h6 class="card-title mt-3">{{ vendor.company_name }}</h6>
+            <p> {{ vendor.vendor.about|truncatechars:280 }}</p> 
+           <a href="{% url 'accounts:vendor_profile' vendor.user.username %}" class="btn btn-success"> Visit Vendor </a> 
+        </article>
+    </div>
+</div>-->

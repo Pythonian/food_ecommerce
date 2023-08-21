@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% include 'partials/_alerts.html' %}
+
+<section class="padding-y bg-light">
+    <div class="container">
+
+        <div class="card mb-5">
+            <div class="content-body">
+                <nav class="row gy-4">
+                    {% for category in categories %}
+                    <div class="col-xl col-lg-2 col-md-3 col-4"> 
+                        <a href="{{ category.get_absolute_url }}" class="item-link text-center"> 
+                            <span class="icon icon-lg mb-2 rounded-3"> 
+                                <i class="fas fa-{{ category.icon }}"></i> 
+                            </span> 
+                            <span class="text"> {{ category.name }} </span> 
+                        </a>                            
+                    </div>
+                    {% endfor %}
+                </nav>
+            </div>
+        </div>
+        {% if preference %}
+        <div class="row mb-5">
+            <h3 class="mb-4">Based on Your Nutritional Preference</h3>
+            {% for product in recommended_food %}
+            {% include "partials/_food_card.html" %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row mb-5">
+            <h3 class="mb-4">Check out these Meals</h3>
+            {% for product in products %}
+            {% include "partials/_food_card.html" %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="row mb-5">
+            <h3 class="mb-3">Food vendors</h3>
+            {% for vendor in vendors %}
+            <div class="col-lg-4">
+                {% include "partials/_vendor_card.html" %}
+            </div>
+            {% empty %}
+                <p>There are currently no Food vendors.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- <section class="{% if request.user.is_authenticated %}bg-info{% else %}bg-dark{% endif %} py-3">
+    <div class="container">
+        <div class="my-5">
+            {% if request.user.is_authenticated %}
+                {% if user.is_vendor %}
+                    <h1 class="text-white"> Best products &amp; <br> brands in our store </h1>
+                {% else %} 
+                    <h1 class="text-white"> Welcome {{ user.username }}! </h1>
+                {% endif %}
+            {% else %}
+            <h1 class="text-white"> Best products &amp; <br> brands in our store </h1>
+            {% endif %}
+            <p class="lead text-white">Trendy Products, Factory Prices, Excellent Service</p>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'accounts:vendor_signup' %}" class="btn btn-warning"> Become a Vendor </a>
+            <a href="{% url 'accounts:customer_signup' %}" class="btn btn-light"> Register as a Customer </a>
+            {% else %}
+            <a href="{% url 'products:list' %}" class="btn btn-warning"> Browse Meals </a>
+            {% endif %}
+        </div>
+    </div>
+</section> -->
+
+{% endblock %}

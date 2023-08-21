@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}{% if create %}Upload{% else %}Update{% endif %} Meal{% endblock %}
+
+{% block content %}
+
+{% include 'partials/_alerts.html' %}
+
+<section class="py-3 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="card my-4 p-3">
+                    <article class="card-body">
+                        <h4 class="mb-4">{% if create %}Upload{% else %}Update{% endif %} Meal</h4>
+                        <form method="post" action="" novalidate enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% include "partials/_form_errors.html" %}
+                            <div class="row mb-3 align-items-end">
+                                {% for field in form %}
+                                <div class="col-6 mb-2">
+                                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {% render_field field class="form-control" %}
+                                    {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                    {% endif %}
+                                    {% if field.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in field.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="row mt-3 mb-4 align-items-center">
+                                <div class="col-auto"> 
+                                    <button class="btn btn-success" type="submit">Submit</button>
+                                </div>
+                                <div class="col-auto"> 
+                                    <a href="{% url 'home' %}" class="btn btn-outline-danger">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
