@@ -25,11 +25,10 @@
                                 </div>
                                 {% endfor %}
                             </div>
-                            <div class="input-group mb-3"> 
-                                <!-- <label for="id_password" class="form-label">Password:</label>  -->
+                            <div class="mb-3"> 
+                                <label for="id_password" class="form-label">Password:</label> 
                                 <input type="password" name="password" autocomplete="current-password" required id="id_password" class="form-control {% if form.password.errors %}is-invalid{% endif %}" placeholder="******">
-        						<button class="btn btn-light border0" type="button" id="id_password" onclick="togglePassword()"><i class="fa fa-eye"></i></button>
-                                {% for error in form.password.errors %}
+        						{% for error in form.password.errors %}
                                 <div class="invalid-feedback">
                                     {{ error }}
                                 </div>

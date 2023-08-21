@@ -43,7 +43,7 @@
                             <a href="{% url 'accounts:customer' %}" class="btn btn-light">
                                 <i class="fa fa-user"></i> My Account
                             </a>
-                            {% else %}
+                            {% elif request.user.is_vendor %}
                             <a href="{% url 'accounts:vendor' %}" class="btn btn-light">
                                 <i class="fa fa-bars"></i> Dashboard
                             </a>
