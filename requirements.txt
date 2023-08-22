@@ -1,25 +1,7 @@
-asgiref==3.7.2
-certifi==2023.7.22
-chardet==3.0.4
-charset-normalizer==3.2.0
 Django==4.2.4
 django-cleanup==8.0.0
 django-widget-tweaks==1.4.12
-future==0.18.3
-h11==0.8.1
-h2==3.2.0
-hpack==3.0.0
-http3==0.6.7
-hyperframe==5.2.0
-idna==2.10
-Paperboy==1.0.1
 Pillow==10.0.0
 -e git+https://github.com/gbozee/pypaystack.git@d5a463262440e39c9505e5dbd4e61f724337f98d#egg=pypaystack
-python-dateutil==2.8.2
 python-decouple==3.8
 requests==2.31.0
-requests-async @ https://github.com/encode/requests-async/archive/master.zip#sha256=8fb8eaf3d6c1ef5e57a839defcd879faf299a1f3fced7cd39e4f0e6f59cf6417
-rfc3986==1.5.0
-six==1.16.0
-sqlparse==0.4.4
-urllib3==2.0.4
