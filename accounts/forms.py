@@ -21,8 +21,8 @@ class VendorSignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ['company_name', 'address', 'image', 'about',
-                  'phone_number', 'password1', 'password2', 'email', 'username']
+        fields = ['email', 'username', 'password1', 'password2',
+                  'company_name', 'address', 'phone_number', 'image', 'about']
 
     @transaction.atomic
     def save(self):

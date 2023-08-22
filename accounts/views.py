@@ -22,8 +22,7 @@ def vendor_signup(request):
             user = form.save()
             login(request, user)
             messages.success(
-                request, "Signup successful. Please wait for verification.")
-            # Send welcome email to vendor
+                request, "Your registration was successful")
             return redirect("accounts:vendor")
         else:
             messages.warning(

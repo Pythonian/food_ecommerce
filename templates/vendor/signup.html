@@ -83,15 +83,6 @@
                                     </div>
                                     {% endfor %} 
                                 </div>
-                                <div class="col-4 mb-3"> 
-                                    <label class="form-label" for="id_state">State:</label> 
-                                    <input type="text" name="state" maxlength="200" placeholder="Location" class="form-control {% if form.state.errors %}is-invalid{% endif %}" required id="id_state" {% if form.state.value != None %}value="{{ form.state.value|stringformat:'s' }}"{% endif %}>
-                                    {% for error in form.state.errors %}
-                                    <div class="invalid-feedback">
-                                        {{ error }}
-                                    </div>
-                                    {% endfor %} 
-                                </div>
                                 <div class="col-12 mb-3"> 
                                     <label class="form-label" for="id_image">Profile image:</label> 
                                     <input type="file" name="image" accept="image/*" class="form-control {% if form.image.errors %}is-invalid{% endif %}" required id="id_image">
@@ -100,26 +91,6 @@
                                         {{ error }}
                                     </div>
                                     {% endfor %} 
-                                </div>
-                                <div class="col-12 mb-3"> 
-                                    <label class="form-label" for="id_cac_file">CAC Document</label> 
-                                    <input type="file" name="cac_file" class="form-control {% if form.cac_file.errors %}is-invalid{% endif %}" required id="id_cac_file">  
-                                    <small class="form-text">Corporate Affairs Commission Document</small> 
-                                    {% for error in form.cac_file.errors %}
-                                    <div class="invalid-feedback">
-                                        {{ error }}
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                                <div class="col-12 mb-3"> 
-                                    <label class="form-label" for="id_government_id">Government ID</label> 
-                                    <input type="file" name="government_id" class="form-control {% if form.government_id.errors %}is-invalid{% endif %}" required id="id_government_id"> 
-                                    <small class="form-text">Governmet issued ID for store owner</small> 
-                                    {% for error in form.government_id.errors %}
-                                    <div class="invalid-feedback">
-                                        {{ error }}
-                                    </div>
-                                    {% endfor %}
                                 </div>
                                 <div class="col-12 mb-3"> 
                                     <label class="form-label" for="id_about">About your Store:</label> 

@@ -15,57 +15,6 @@ from .models import OrderItem, Order
 from .forms import OrderCreateForm
 
 
-# def order_create(request):
-#     cart = Cart(request)
-#     if request.method == 'POST':
-#         form = OrderCreateForm(request.POST)
-#         if form.is_valid():
-#             order = form.save(commit=False)
-#             if request.user.is_authenticated:
-#                 order.user = request.user
-#             order.save()
-#             request.session['order_id'] = order.id
-
-#             for item in cart:
-#                 if request.user.is_authenticated:
-#                     OrderItem.objects.create(
-#                         order=order,
-#                         product=item['product'],
-#                         price=item['price'],
-#                         user=request.user,
-#                         vendor=item['product'].vendor.vendor,
-#                         quantity=item['quantity'])
-#                     order.vendors.add(item['product'].vendor.vendor)
-
-#                 else:
-#                     OrderItem.objects.create(
-#                         order=order,
-#                         product=item['product'],
-#                         price=item['price'],
-#                         vendor=item['product'].vendor.vendor,
-#                         quantity=item['quantity'])
-#                     order.vendors.add(item['product'].vendor.vendor)
-
-#             # clear the cart
-#             cart.clear()
-#             return render(request,
-#                           'orders/created.html',
-#                           {'order': order})
-#     else:
-#         form = OrderCreateForm()
-#         if request.user.is_authenticated:
-#             initial_data = {
-#                 'first_name': request.user.first_name,
-#                 'last_name': request.user.last_name,
-#                 'email': request.user.email,
-#                 'address': request.user.customer.address,
-#                 'phone_number': request.user.customer.phone_number,
-#             }
-#             form = OrderCreateForm(initial=initial_data)
-#     return render(request,
-#                   'orders/create.html',
-#                   {'cart': cart, 'form': form})
-
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
@@ -141,9 +90,6 @@ def order_create(request):
             # Clear the cart
             cart.clear()
             return redirect('orders:confirm_order')
-            # return render(request,
-            #               'orders/created.html',
-            #               {'order': order})
     else:
         form = OrderCreateForm()
         if request.user.is_authenticated:
@@ -189,8 +135,8 @@ def confirm_order(request):
 @csrf_exempt
 def payment_done(request):
     order_id = request.session.get('order_id')
-    order = get_object_or_404(order, id=order_id)
-    return render(request, 'orders/invoice.html', {'order': order})
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, 'orders/created.html', {'order': order})
 
 
 @csrf_exempt

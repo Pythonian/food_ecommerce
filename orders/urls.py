@@ -7,6 +7,7 @@ app_name = 'orders'
 urlpatterns = [
     path('create/', views.order_create, name='create'),
     path('confirm_order/', views.confirm_order, name='confirm_order'),
+    path('payment_done/', views.payment_done, name='payment_done'),
     path('track-order/<int:id>/', views.track_order, name='track_order'),
     path('status/shipped/<int:id>/',
          views.order_status_shipped, name='order_status_shipped'),
