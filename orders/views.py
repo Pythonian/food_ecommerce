@@ -140,9 +140,10 @@ def order_create(request):
 
             # Clear the cart
             cart.clear()
-            return render(request,
-                          'orders/created.html',
-                          {'order': order})
+            return redirect('orders:confirm_order')
+            # return render(request,
+            #               'orders/created.html',
+            #               {'order': order})
     else:
         form = OrderCreateForm()
         if request.user.is_authenticated:
@@ -162,14 +163,15 @@ def order_create(request):
 @login_required
 def confirm_order(request):
     order_id = request.session.get('order_id')
-    order = get_object_or_404(order, id=order_id)
+    order = get_object_or_404(Order, id=order_id)
 
-    paystack_amount = int(order.get_total_cost * 100)
+    paystack_amount = int(order.get_total_cost())
+    paystack_amount = paystack_amount * 100
     paystack_ref = None
     if not paystack_ref:
         paystack_ref = get_random_string(length=12).upper()
         order.paystack_id = paystack_ref
-        order.total_amount = order.get_total_cost
+        order.total_amount = order.get_total_cost()
         order.save()
     paystack_redirect_url = "{}?amount={}".format(
         reverse('paystack:verify_payment',

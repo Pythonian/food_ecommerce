@@ -59,54 +59,15 @@ class ProductManager(models.Manager):
 
 
 class Product(models.Model):
-    """
-    Product details table
-    """
-
     category = models.ForeignKey(
-        Category,
-        on_delete=models.PROTECT,
-        related_name=_("products"),
-        verbose_name=_("category"),
-        help_text=_("format: required"),
-    )
-    # uuid, impressions
+        Category, on_delete=models.PROTECT, related_name=_("products"))
     name = models.CharField(
-        unique=True,
-        max_length=255,
-        verbose_name=_("name"),
-        help_text=_("format: required, max-255"),
-        db_index=True,
-    )
+        unique=True, max_length=255, db_index=True)
     slug = models.SlugField(
-        unique=True,
-        max_length=255,
-        verbose_name=_("product safe URL"),
-        help_text=_(
-            "format: required, letters, numbers, underscores or hyphens"
-        ),
-        db_index=True,
-    )
-    description = models.TextField(
-        verbose_name=_("product description"),
-        help_text=_("format: required"),
-    )
-    price = models.DecimalField(
-        max_digits=7,
-        decimal_places=2,
-        verbose_name=_("price"),
-        help_text=_("format: maximum price 99999.99"),
-        error_messages={
-            "name": {
-                "max_length": _("the price must be between 0 and 99999.99."),
-            },
-        },
-    )
-    image = models.ImageField(
-        verbose_name=_("image"),
-        # help_text=_("Upload a product image. It should not be more than 2MB and should be in High Definition (HD)."),
-        upload_to="images/",
-    )
+        unique=True, max_length=255, db_index=True)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name=_("price"))
+    image = models.ImageField(upload_to="images/")
     calories = models.IntegerField(
         help_text="The amount of energy provided by the food.Example: 150 (kcal)")
     protein = models.IntegerField(
@@ -129,12 +90,7 @@ class Product(models.Model):
         related_name=_("products"),
         on_delete=models.CASCADE
     )
-    created = models.DateTimeField(
-        # defaul=timezone.now,
-        auto_now_add=True,
-        verbose_name=_("created"),
-        help_text=_("format: Y-m-d H:M:S"),
-    )
+    created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(
         auto_now=True,
         verbose_name=_("date product last updated"),

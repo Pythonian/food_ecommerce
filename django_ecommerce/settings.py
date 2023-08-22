@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'products.apps.ProductsConfig',
     'widget_tweaks',
+    'paystack.frameworks.django',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'carts.context_processors.cart',
             ],
+            'libraries': {
+                'paystack': 'paystack.frameworks.django.templatetags.paystack',
+            },
         },
     },
 ]

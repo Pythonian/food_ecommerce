@@ -20,12 +20,3 @@ class OrderAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
-
-
-class DispatchAdmin(admin.AdminSite):
-    site_header = 'Dispatch Admin'
-
-
-dispatch_site = DispatchAdmin(name='DispatchAdmin')
-
-dispatch_site.register(Order)

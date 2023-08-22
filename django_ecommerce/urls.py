@@ -5,12 +5,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth import views as auth_views
-from orders.admin import dispatch_site
 from .views import home
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("dispatchadmin/", dispatch_site.urls),
+    path('paystack/', include(('paystack.frameworks.django.urls', 'paystack'), namespace='paystack')),
     path("cart/", include("carts.urls", namespace="carts")),
     path("account/", include("accounts.urls", namespace="accounts")),
     path("orders/", include("orders.urls", namespace="orders")),
